@@ -4,7 +4,13 @@ var url = require('url'); //url 모듈을 url이라는 변수명으로 사용하
 var qs = require('querystring');
 var path = require('path');
 var template = require('./lib/template.js');
-var topic = require('./lib/topic.js');
+var topic = require('./route/topic.js');
+//express
+var express = require('express');
+var app2 = express();
+var authRouter = require('./route/auth');//Router
+
+app2.use('/auth',authRouter);//express
 
 var app = http.createServer(function (request, response) {
   var _url = request.url; // Query String을 가져오는 부분
