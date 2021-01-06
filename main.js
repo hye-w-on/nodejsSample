@@ -9,6 +9,7 @@ var topic = require('./route/topic.js');
 //express
 var express = require('express');
 var app2 = express();
+var bodyParser = require('body-parser'); //request를 받아오는 코드를 간단히 하기 위해 필수 //var post = request.body;
 
 var session = require('express-session');
 var FileStore = require('session-file-store')(session); //세션을 파일에 저장하는 것보다는 DB등에 저장해야함
@@ -19,9 +20,14 @@ app2.use(session({ //세션설정
   saveUninitialized: true,
   store:new FileStore()
 }))
-var authRouter = require('./route/auth');//Router
 
+app2.use(express.static('public'));
+app2.use(bodyParser.urlencoded({ extended: false }));
+
+var authRouter = require('./route/auth');//Router
 app2.use('/auth',authRouter);//express "/auth"라는 패스에 authRouter라는 미들웨어를 적용하겠다
+app2.use(bodyParser.urlencoded({extended:true})); 
+app2.use(bodyParser.json());
 
 var app = http.createServer(function (request, response) {
   var _url = request.url; // Query String을 가져오는 부분

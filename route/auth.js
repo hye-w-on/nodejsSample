@@ -27,10 +27,8 @@ router.get('/login', function(request, response){
 
 router.post('/login_process', function (request, response) {
   var post = request.body;
-  console.log(post);
   var email = post.email;
   var password = post.pwd;
-  console.log(post);
   if(email === authData.email && password === authData.password){
     request.session.is_logined = true;
     request.session.nickname = authData.nickname;
@@ -40,7 +38,6 @@ router.post('/login_process', function (request, response) {
   } else {
     response.send('Who?');
   }
-  // response.redirect(`/topic/${title}`);
 });
 
 router.get('/logout', function (request, response) {
