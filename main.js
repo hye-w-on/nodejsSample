@@ -5,12 +5,23 @@ var qs = require('querystring');
 var path = require('path');
 var template = require('./lib/template.js');
 var topic = require('./route/topic.js');
+
 //express
 var express = require('express');
 var app2 = express();
+
+var session = require('express-session');
+var FileStore = require('session-file-store')(session); //세션을 파일에 저장하는 것보다는 DB등에 저장해야함
+
+app2.use(session({ //세션설정
+  secret: 'asadlfkj!@#!@#dfgasdg',
+  resave: false,
+  saveUninitialized: true,
+  store:new FileStore()
+}))
 var authRouter = require('./route/auth');//Router
 
-app2.use('/auth',authRouter);//express
+app2.use('/auth',authRouter);//express "/auth"라는 패스에 authRouter라는 미들웨어를 적용하겠다
 
 var app = http.createServer(function (request, response) {
   var _url = request.url; // Query String을 가져오는 부분
@@ -41,4 +52,5 @@ var app = http.createServer(function (request, response) {
   }
 
 });
-app.listen(3000); //3000 포트
+app2.listen(3000); //3000 포트
+//app.listen(3000); //3000 포트
