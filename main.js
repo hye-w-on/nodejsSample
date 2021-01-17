@@ -12,7 +12,7 @@ var app2 = express();
 var bodyParser = require('body-parser'); //request를 받아오는 코드를 간단히 하기 위해 필수 //var post = request.body;
 
 var session = require('express-session');
-var FileStore = require('session-file-store')(session); //세션을 파일에 저장하는 것보다는 DB등에 저장해야함.
+var FileStore = require('session-file-store')(session); //세션을 파일에 저장하는 것보다는 DB등에 저장해야함
 
 app2.use(session({ //세션설정
   secret: 'asadlfkj!@#!@#dfgasdg',
