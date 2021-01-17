@@ -1,6 +1,6 @@
 var http = require('http');
 //const fs = require('fs');
-var url = require('url'); //url 모듈을 url이라는 변수명으로 사용하겠다
+var url = require('url'); //url 모듈을 url이라는 변수명으로 사용하겠다.
 var qs = require('querystring');
 var path = require('path');
 var template = require('./lib/template.js');
